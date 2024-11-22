@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Trackie | Students</title>    <!-- Title of the webpage -->
+    <link rel="stylesheet" href="classList.css">      <!-- Link to the external CSS file for styling -->
+</head>
+<body>
+    <div id="overlay"></div>
+    <!-- Navigation bar -->
+    <nav>
+        <label class="logo"><img class="product-logo" src="/assets/Product Logo.png"></label>
+        <ul>
+            <li><a class="active" href="/HOMEPAGE/homePage.html"><img class="home" src="/assets/Home.png"></a></li>
+            <!-- Profile section with a dropdown menu -->
+            <li>
+                <a class="active" href="#"><img class="home" src="/assets/Profile.png"></a>
+                <ul class="dropdown">
+                    <li><a href="/index.html">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div id="custom-confirm" class="custom-confirm">
+        <div class="confirm-content">
+            <p>Are you sure you want to remove this student?</p>
+            <button id="confirm-delete" class="confirm-button">Yes</button>
+            <button id="cancel-delete" class="cancel-button">No</button>
+        </div>
+    </div>
+    <div id="add-student-notification" class="notification">
+        <h5>Student added successfully!</h5>
+        <div class="progress-bar"></div>
+    </div>
+
+
+
+
+
+    <!-- Button to open Add Student form -->
+     <div class="add-student-btn">
+        <button id="openStudentForm">
+            <img src="/assets/add-user.png">
+        </button>
+     </div>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs-container">
+
+        <div class="student-count">
+            <h1 id="totalStudentCount"></h1>
+        </div>
+    
+
+        
+        <div class="classroom-details" id="classroomDetails">
+            <div class="row">
+                <p><span id="preSchool"></span></p>
+            </div>
+            <div class="row">
+                <p><span id="sectionName"></span> | <span id="schedule"></span></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Student Form -->
+    <div class="studentContainer" id="studentForm" style="display: none;">
+        <img class="formFooter" src="/assets/formFooter.png">
+        <button id="closeStudentForm" class="btn-close"><img class="btn-close" src="/assets/Multiply.png"></button>
+        <div class="add-classroom-container">
+            <form action="" id="studentAddForm" class="createClassroomForm">
+                <div class="formHeader"></div>
+                <h2>Add Student</h2>
+                <h3>Personal Information</h3>
+                <div class="input-row">
+                    <div class="input-box1">
+                        <h5>First Name</h5>
+                        <input type="hidden" id="studentClassroomId" />
+                        <input type="text" id="studentFirstName" required>
+                    </div>
+                    <div class="input-box1">
+                        <h5>Last Name</h5>
+                        <input type="text" id="studentLastName" required>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-box-age">
+                        <h5>Age</h5>
+                        <select name="Age" id="studentAge" class="input-box" required>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
+                    </div>
+                    <div class="input-box-birthday">
+                        <h5>Date of Birth</h5>
+                        <input type="date" id="studentDateOfBirth" required>
+                    </div>
+                    <div class="input-box-idnumber">
+                        <h5>ID Number</h5>
+                        <input type="text" id="studentIDNumber" required>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-box-address">
+                        <h5>Address</h5>
+                        <input type="text" id="studentAddress" required>
+                    </div>
+                    <div class="input-box-gender">
+                        <h5>Gender</h5>
+                        <label>
+                            <input type="radio" name="gender" value="male" required> Male
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="female" required> Female
+                        </label>
+                    </div>
+                </div><br>
+                <h3>Contact Information</h3>
+                <div class="input-row">
+                    <div class="input-box1">
+                        <h5>Parents/Guardians</h5>
+                        <input type="text" id="studentParentOrGuardian" required>
+                    </div>
+                    <div class="input-box1">
+                        <h5>Email</h5>
+                        <input type="text" id="studentEmail" required>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-box1">
+                        <h5>Phone Number</h5>
+                        <input type="text" id="studentPhoneNumber" required>
+                    </div>
+                    <div class="input-box1">
+                        <h5>Relationship</h5>
+                        <input type="text" id="studentRelationship" required>
+                    </div>
+                </div>
+                <button type="submit" class="add-btn">Add</button>
+            </form>     
+        </div>
+    </div>
+
+    <div id="studentList"></div>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="classList.js"></script>
+
+
+    <script>
+        // JavaScript to show/hide the student form
+        document.getElementById("openStudentForm").addEventListener("click", function() {
+            document.getElementById("studentForm").style.display = "block";
+            document.getElementById("overlay").style.display = "block"; // Show the overlay
+        });
+
+        document.getElementById("closeStudentForm").addEventListener("click", function() {
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("overlay").style.display = "none"; // Hide the overlay
+        });
+
+        // Close the form when clicking outside the student form
+        document.getElementById("overlay").addEventListener("click", function() {
+            document.getElementById("studentForm").style.display = "none";
+            document.getElementById("overlay").style.display = "none"; // Hide the overlay
+            document.getElementById('studentAddForm').reset();
+        });
+
+        // Handle form submission (adding a student)
+        document.getElementById("studentAddForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // You can use Firebase or other methods to save student data here
+            // For example, using Firebase to save data:
+            const studentFirstName = document.getElementById("studentFirstName").value;
+            const studentLastName = document.getElementById("studentLastName").value;
+            const studentAge = document.getElementById("studentAge").value;
+            const studentDateOfBirth = document.getElementById("studentDateOfBirth").value;
+            const studentIDNumber = document.getElementById("studentIDNumber").value;
+            const studentAddress = document.getElementById("studentAddress").value;
+            const studentParentOrGuardian = document.getElementById("studentParentOrGuardian").value;
+            const studentEmail = document.getElementById("studentEmail").value;
+            const studentPhoneNumber = document.getElementById("studentPhoneNumber").value;
+            const studentRelationship = document.getElementById("studentRelationship").value;
+            const studentGender = document.querySelector('input[name="gender"]:checked').value;
+
+            // Save the student data (example using Firebase)
+            firebase.firestore().collection('students').add({
+                firstName: studentFirstName,
+                lastName: studentLastName,
+                age: studentAge,
+                dateOfBirth: studentDateOfBirth,
+                idNumber: studentIDNumber,
+                address: studentAddress,
+                parentOrGuardian: studentParentOrGuardian,
+                email: studentEmail,
+                phoneNumber: studentPhoneNumber,
+                relationship: studentRelationship,
+                gender: studentGender
+            }).then(() => {
+                //alert("Student added successfully!"); // Optional: Notify the user
+                document.getElementById("studentForm").style.display = "none";
+                document.getElementById("overlay").style.display = "none"; // Hide the overlay
+
+            }).catch((error) => {
+                console.error("Error adding student: ", error);
+                alert("Failed to add student.");
+            });
+        });
+    </script>
+
+</body>
+</html>

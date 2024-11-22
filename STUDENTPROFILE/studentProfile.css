@@ -1,0 +1,880 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    color: rgb(0, 0, 0);
+    font-family: "Lato", Arial, sans-serif;
+    overflow: hidden;
+}
+
+nav {
+    background-color: #ffffff; /* Navbar background color */
+    height: 100px; /* Fixed height for navbar */
+    width: 100%; /* Full width for navbar */
+    box-shadow: 0px 4px 4px #1486ee40; /* Shadow effect */
+    display: flex;
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+    position: fixed; /* Fix position at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* High z-index to stay above content */
+}
+
+.product-logo {
+    width: 250px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+nav ul {
+    float: right;
+    margin-right: 80px;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    display: inline-block;
+    position: relative;
+    margin: 5px 5px;
+}
+
+nav ul li a {
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    padding: 27.5px 20px;
+    color: #555555;
+    text-decoration: none;
+    text-align: center;
+}
+
+nav ul li .home {
+    height: 35px;
+}
+
+a.active {
+    position: relative;
+    font-weight: 800;
+}
+
+a.active::before {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 0%;
+    left: 0;
+    bottom: -9px;
+    transition: width 0.5s ease;
+    z-index: 1;
+}
+
+a.active:hover::before {
+    width: 100%;
+}
+
+a.acteve {
+    position: relative;
+    font-weight: 800;
+}
+
+a.acteve::before {
+    content: '';
+    position: absolute;
+    background: #43425E;
+    height: 3px;
+    width: 0%;
+    left: 0;
+    bottom: -9px;
+    transition: width 0.5s ease;
+    z-index: 1;
+}
+
+a.acteve:hover::before {
+    width: 100%;
+}
+
+
+
+ul li ul.dropdown {
+    top: 95px;
+    display: none;
+    position: absolute;
+    background: #5EA8ED;
+    width: 100%;
+    opacity: 0; /* Initially invisible */
+    transform: translateY(-10px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for opacity and sliding effect */
+}
+
+ul li:hover ul.dropdown {
+    display: block;
+    opacity: 1; /* Make it visible */
+    transform: translateY(0); /* Slide into place */
+}
+
+/* Ensure hover effect on links within the dropdown */
+ul li a:hover {
+    background: transparent;
+    color: white; /* Optionally change text color on hover */
+}
+
+
+
+/* Hide scrollbar for WebKit browsers */
+.left-container::-webkit-scrollbar,
+.right-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* For Firefox */
+.left-container,
+.right-container {
+    scrollbar-width: none; /* Hides scrollbar */
+}
+
+/* Left container: 20% width, pink background */
+.left-container {
+    padding-top: 210px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 23%;
+    background-color: pink;
+    height: 100vh;
+    overflow-y: scroll; /* Enables vertical scrolling */
+    background-color: rgb(255, 255, 255); /* Default color */
+    transition: background-color 0.3s ease; /* Optional for smooth transition */
+}
+
+
+.profilePicture {
+    margin-top: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 355px;
+    height: 203px;
+}
+
+.profileBoardName {
+    display: flex;
+    margin-top: 20px;
+    width: 350px;
+}
+
+/* Right container: 80% width, white background */
+.right-container {
+    width: 77%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    color: white;
+    height: 100vh;
+    overflow-y: scroll; /* Enables vertical scrolling */
+}
+
+/* SRA section with centered content and red background */
+.sra {
+    width: 98.6%;
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+}
+
+.sra h1 {
+    color: #ffffff; /* White text color */
+    font-size: 22px; /* Adjust font size as needed */
+    margin: 0; /* Remove default margin */
+    font-weight: 700;
+}
+
+/* Domain header layout */
+.domain-header {
+    display: grid;
+    grid-template-columns: 10fr 1fr 1fr 1fr 1fr; /* Adjust widths of each column */
+    width: 98.6%;
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(170, 168, 168, 0.3);
+    padding-right: 1px;
+    margin: 0;
+}
+
+.domain {
+
+    padding-top: 7px;
+    text-align: left;
+    padding-left: 15px;
+    font-weight: 900;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.term {
+    padding: 7px;
+    border-left: 1px solid rgba(170, 168, 168, 0.3);
+}
+
+.mininavbar {
+    background-color: #ffffff; /* Background color of the navbar */
+    padding: 22px 5px; /* Top and bottom padding for compact size */
+    text-align: center; /* Center align the navbar */
+    width: 98.6%;
+    border-bottom: 1px solid rgba(170, 168, 168, 0.3);
+    margin-top: 80px;
+}
+
+.mininavbar ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+}
+
+.mininavbar ul li {
+    margin: 0 40px; /* Horizontal spacing between items */
+}
+
+.mininavbar ul li a {
+    color: #000000; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 14px; /* Smaller font size for "mini" appearance */
+    transition: color 0.3s ease; /* Smooth transition on hover */
+    letter-spacing: 0.5px;
+}
+
+.mininavbar ul li a.active-tab {
+    color: #000000; /* Link color */
+    font-weight: 800;
+}
+
+.mininavbar ul li a:hover {
+    transform: scale(1.05);
+    color: rgb(0, 0, 0);
+    font-weight: 800;
+}
+
+
+
+/* ================================================================================================= */
+/* Container for the table rows */
+        .table-container {
+            width: 100%;
+            display: grid;
+            gap: 1px; /* Adds spacing between rows */
+        }
+
+        /* Style for each row */
+        .table-row {
+            display: grid;
+            grid-template-columns: 10fr 1fr 1fr 1fr 1fr; /* Adjust width of each column */
+            width: 100%;
+            background-color: white;
+        }
+
+        /* Style for table cells */
+        .table-row div {
+            padding: 5px;
+            border-right: 1px solid rgba(170, 168, 168, 0.3);
+            border-left: none;
+            border-bottom: 1px solid rgba(170, 168, 168, 0.3);
+            margin: 0;
+        }
+
+        /* Header styling */
+        .table-header {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        /* Initially hide additional rows */
+        .dropdown-row {
+            display: none;
+        }
+
+        /* Dropdown button styling */
+
+
+        /* Input styling for cells */
+        input[type="text"] {
+            width: 100%;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            text-align: center;
+        }
+
+.student-name {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    padding: 0;
+}
+
+.student-name h1 {
+    position: absolute;
+    font-size: 30px;
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.student-name p {
+    position: absolute;
+    margin: 0; /* Reset any default margin */
+    width: 100%;
+    text-align: center;
+}
+
+
+.student-name img {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 70px;
+}
+
+/* Centering the table cells */
+.student-info td {
+    text-align: center; /* Center text horizontally */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 30px; /* Add padding for better spacing */
+    font-weight: bold;
+}
+
+/* Updated to ensure the table is centered */
+.student-info {
+    position: absolute;
+    padding-top: 45px; /* Space above the table */
+    border: none;
+    width: 100%;
+    display: flex; /* Added to enable flex properties */
+    justify-content: center; /* Center the table itself */
+    align-items: center; /* Center content vertically */
+}
+
+/* Additional fix to ensure table cells are center aligned */
+.student-info tr {
+    display: flex; /* Ensures the row acts as a flex container */
+    justify-content: center; /* Centers the row content */
+    width: 100%; /* Makes the row full width */
+}
+
+.left-container.nursery1 {
+    background-color: rgba(67, 157, 119, 0.40);
+}
+
+.left-container.nursery2 {
+    background-color: rgba(154, 193, 231, 0.40);
+}
+
+.left-container.kinder {
+    background-color: rgba(255, 192, 203, 0.40);
+}
+
+.left-container.default, .domain-header.default {
+    background-color: rgb(255, 255, 255); /* Default or no color */
+}
+
+.domain-header.nursery1 {
+    background-color: rgb(197, 230, 216);
+}
+
+.domain-header.nursery2 {
+    background-color: rgb(200, 226, 255);
+}
+
+.domain-header.kinder {
+    background-color: rgb(248, 228, 231);
+}
+
+.domain-header.default {
+    background-color: #ffffff;
+}
+
+.sra.nursery1, .markingCode.nursery1, .marking-code-icon.nursery1, .marking-code-icon-p.nursery1, .marking-code-icon-b.nursery1, .marking-code-icon-e.nursery1, .marking-code-icon-n.nursery1 {
+    background-color: #439D77;
+}
+
+.sra.nursery2, .markingCode.nursery2, .marking-code-icon.nursery2, .marking-code-icon-p.nursery2, .marking-code-icon-b.nursery2, .marking-code-icon-e.nursery2, .marking-code-icon-n.nursery2 {
+    background-color: #5EA8ED;
+}
+
+.sra.kinder, .markingCode.kinder, .marking-code-icon.kinder, .marking-code-icon-p.kinder, .marking-code-icon-b.kinder, .marking-code-icon-e.kinder, .marking-code-icon-n.kinder {
+    background-color: #E56867;
+}
+
+.sra.default, .markingCode.default, .marking-code-icon.default, .marking-code-icon-p.default, .marking-code-icon-b.default, .marking-code-icon-e.default, .marking-code-icon-n.default {
+    background-color: white;
+}
+
+ .marking-code-right.nursery1, .marking-code-right-p.nursery1, .marking-code-right-b.nursery1, .marking-code-right-e.nursery1, .marking-code-right-n.nursery1 {
+    border-color: #439D77;
+}
+
+ .marking-code-right.nursery2, .marking-code-right-p.nursery2, .marking-code-right-b.nursery2, .marking-code-right-e.nursery2, .marking-code-right-n.nursery2 {
+    border-color: #5EA8ED;
+}
+
+ .marking-code-right.kinder, .marking-code-right-p.kinder, .marking-code-right-b.kinder, .marking-code-right-e.kinder, .marking-code-right-n.kinder {
+    border-color: #E56867;
+}
+
+ .marking-code-right.default, .marking-code-right-p.default, .marking-code-right-b.default, .marking-code-right-e.default, .marking-code-right-n.default {
+    border-color: white;
+}
+
+
+/* dropdown color */
+
+.dropdown-btn.nursery1, .dropdown-btn1.nursery1, .dropdown-btn2.nursery1, .dropdown-btn3.nursery1, .dropdown-btn4.nursery1,
+.dropdown-btn5.nursery1, .dropdown-btn6.nursery1, .dropdown-btn7.nursery1, .dropdown-btn8.nursery1, .dropdown-btn9.nursery1,
+.dropdown-btn10.nursery1, .dropdown-btn11.nursery1, .dropdown-btn12.nursery1, .dropdown-btn13.nursery1, .dropdown-btn14.nursery1,
+.dropdown-btn15.nursery1, .dropdown-btn16.nursery1, .dropdown-btn17.nursery1, .dropdown-btn18.nursery1, .dropdown-btn19.nursery1,
+.dropdown-btn20.nursery1, .dropdown-btn21.nursery1, .dropdown-btn22.nursery1, .dropdown-btn23.nursery1, .dropdown-btn24.nursery1,
+.dropdown-btn25.nursery1, .dropdown-btn26.nursery1, .dropdown-btn27.nursery1, .dropdown-btn28.nursery1, .dropdown-btn29.nursery1,
+.dropdown-btn30.nursery1, .dropdown-btn31.nursery1, .dropdown-btn32.nursery1, .dropdown-btn33.nursery1, .dropdown-btn34.nursery1,
+.dropdown-btn35.nursery1, .dropdown-btn36.nursery1, .dropdown-btn37.nursery1, .dropdown-btn38.nursery1, .dropdown-btn39.nursery1, 
+.dropdown-btn40.nursery1, .dropdown-btn41.nursery1, .dropdown-btn42.nursery1, .dropdown-btn43.nursery1, .dropdown-btn44.nursery1,
+.dropdown-btn45.nursery1, .dropdown-btn46.nursery1, .dropdown-btn47.nursery1, .dropdown-btn48.nursery1, .dropdown-btn49.nursery1,
+.dropdown-btn50.nursery1, .dropdown-btn51.nursery1, .dropdown-btn52.nursery1, .dropdown-btn53.nursery1, .dropdown-btn54.nursery1,
+.dropdown-btn55.nursery1, .dropdown-btn56.nursery1, .dropdown-btn57.nursery1, .dropdown-btn58.nursery1, .dropdown-btn59.nursery1,
+.dropdown-btn60.nursery1 {
+    background-color: #E3F0EB;
+}
+
+.dropdown-btn.nursery2, .dropdown-btn1.nursery2, .dropdown-btn2.nursery2, .dropdown-btn3.nursery2, .dropdown-btn4.nursery2, 
+.dropdown-btn5.nursery2, .dropdown-btn6.nursery2, .dropdown-btn7.nursery2, .dropdown-btn8.nursery2, .dropdown-btn9.nursery2,
+.dropdown-btn10.nursery2, .dropdown-btn11.nursery2, .dropdown-btn12.nursery2, .dropdown-btn13.nursery2, .dropdown-btn14.nursery2,
+.dropdown-btn15.nursery2, .dropdown-btn16.nursery2, .dropdown-btn17.nursery2, .dropdown-btn18.nursery2, .dropdown-btn19.nursery2,
+.dropdown-btn20.nursery2, .dropdown-btn21.nursery2, .dropdown-btn22.nursery2, .dropdown-btn23.nursery2, .dropdown-btn24.nursery2,
+.dropdown-btn25.nursery2, .dropdown-btn26.nursery2, .dropdown-btn27.nursery2, .dropdown-btn28.nursery2, .dropdown-btn29.nursery2,
+.dropdown-btn30.nursery2, .dropdown-btn31.nursery2, .dropdown-btn32.nursery2, .dropdown-btn33.nursery2, .dropdown-btn34.nursery2,
+.dropdown-btn35.nursery2, .dropdown-btn36.nursery2, .dropdown-btn37.nursery2, .dropdown-btn38.nursery2, .dropdown-btn39.nursery2, 
+.dropdown-btn40.nursery2, .dropdown-btn41.nursery2, .dropdown-btn42.nursery2, .dropdown-btn43.nursery2, .dropdown-btn44.nursery2,
+.dropdown-btn45.nursery2, .dropdown-btn46.nursery2, .dropdown-btn47.nursery2, .dropdown-btn48.nursery2, .dropdown-btn49.nursery2,
+.dropdown-btn50.nursery2, .dropdown-btn51.nursery2, .dropdown-btn52.nursery2, .dropdown-btn53.nursery2, .dropdown-btn54.nursery2,
+.dropdown-btn55.nursery2, .dropdown-btn56.nursery2, .dropdown-btn57.nursery2, .dropdown-btn58.nursery2, .dropdown-btn59.nursery2,
+.dropdown-btn60.nursery2 {
+    background-color: #DAEEFA;
+}
+
+.dropdown-btn.kinder, .dropdown-btn1.kinder, .dropdown-btn2.kinder, .dropdown-btn3.kinder, .dropdown-btn4.kinder, 
+.dropdown-btn5.kinder, .dropdown-btn6.kinder, .dropdown-btn7.kinder, .dropdown-btn8.kinder, .dropdown-btn9.kinder,
+.dropdown-btn10.kinder, .dropdown-btn11.kinder, .dropdown-btn12.kinder, .dropdown-btn13.kinder, .dropdown-btn14.kinder,
+.dropdown-btn15.kinder, .dropdown-btn16.kinder, .dropdown-btn17.kinder, .dropdown-btn18.kinder, .dropdown-btn19.kinder,
+.dropdown-btn20.kinder, .dropdown-btn21.kinder, .dropdown-btn22.kinder, .dropdown-btn23.kinder, .dropdown-btn24.kinder,
+.dropdown-btn25.kinder, .dropdown-btn26.kinder, .dropdown-btn27.kinder, .dropdown-btn28.kinder, .dropdown-btn29.kinder,
+.dropdown-btn30.kinder, .dropdown-btn31.kinder, .dropdown-btn32.kinder, .dropdown-btn33.kinder, .dropdown-btn34.kinder,
+.dropdown-btn35.kinder, .dropdown-btn36.kinder, .dropdown-btn37.kinder, .dropdown-btn38.kinder, .dropdown-btn39.kinder, 
+.dropdown-btn40.kinder, .dropdown-btn41.kinder, .dropdown-btn42.kinder, .dropdown-btn43.kinder, .dropdown-btn44.kinder,
+.dropdown-btn45.kinder, .dropdown-btn46.kinder, .dropdown-btn47.kinder, .dropdown-btn48.kinder, .dropdown-btn49.kinder,
+.dropdown-btn50.kinder, .dropdown-btn51.kinder, .dropdown-btn52.kinder, .dropdown-btn53.kinder, .dropdown-btn54.kinder,
+.dropdown-btn55.kinder, .dropdown-btn56.kinder, .dropdown-btn57.kinder, .dropdown-btn58.kinder, .dropdown-btn59.kinder,
+.dropdown-btn60.kinder {
+    background-color: #FEEBEB;
+}
+
+.dropdown-btn.default, .dropdown-btn1.default, .dropdown-btn2.default, .dropdown-btn3.default, .dropdown-btn4.default, 
+.dropdown-btn5.default, .dropdown-btn6.default, .dropdown-btn7.default, .dropdown-btn8.default, .dropdown-btn9.default,
+.dropdown-btn10.default, .dropdown-btn11.default, .dropdown-btn12.default, .dropdown-btn13.default, .dropdown-btn14.default,
+.dropdown-btn15.default, .dropdown-btn16.default, .dropdown-btn17.default, .dropdown-btn18.default, .dropdown-btn19.default,
+.dropdown-btn20.default, .dropdown-btn21.default, .dropdown-btn22.default, .dropdown-btn23.default, .dropdown-btn24.default,
+.dropdown-btn25.default, .dropdown-btn26.default, .dropdown-btn27.default, .dropdown-btn28.default, .dropdown-btn29.default,
+.dropdown-btn30.default, .dropdown-btn31.default, .dropdown-btn32.default, .dropdown-btn33.default, .dropdown-btn34.default,
+.dropdown-btn35.default, .dropdown-btn36.default, .dropdown-btn37.default, .dropdown-btn38.default, .dropdown-btn39.default, 
+.dropdown-btn40.default, .dropdown-btn41.default, .dropdown-btn42.default, .dropdown-btn43.default, .dropdown-btn44.default,
+.dropdown-btn45.default, .dropdown-btn46.default, .dropdown-btn47.default, .dropdown-btn48.default, .dropdown-btn49.default,
+.dropdown-btn50.default, .dropdown-btn51.default, .dropdown-btn52.default, .dropdown-btn53.default, .dropdown-btn54.default,
+.dropdown-btn55.default, .dropdown-btn56.default, .dropdown-btn57.default, .dropdown-btn58.default, .dropdown-btn59.default,
+.dropdown-btn60.default {
+    background-color: white;
+}
+
+
+.dropdown-btn, .dropdown-btn1, .dropdown-btn2, .dropdown-btn3, .dropdown-btn4, .dropdown-btn5, .dropdown-btn6, .dropdown-btn7,
+.dropdown-btn8, .dropdown-btn9, .dropdown-btn10, .dropdown-btn11, .dropdown-btn12, .dropdown-btn13, .dropdown-btn14,
+.dropdown-btn15, .dropdown-btn16, .dropdown-btn17, .dropdown-btn18, .dropdown-btn19, .dropdown-btn20, .dropdown-btn21,
+.dropdown-btn22, .dropdown-btn23, .dropdown-btn24, .dropdown-btn25, .dropdown-btn26, .dropdown-btn27, .dropdown-btn28,
+.dropdown-btn29, .dropdown-btn30, .dropdown-btn31, .dropdown-btn32, .dropdown-btn33, .dropdown-btn34, .dropdown-btn35,
+.dropdown-btn36, .dropdown-btn37, .dropdown-btn38, .dropdown-btn39, .dropdown-btn40, .dropdown-btn41, .dropdown-btn42,
+.dropdown-btn43, .dropdown-btn44, .dropdown-btn45, .dropdown-btn46, .dropdown-btn47, .dropdown-btn48, .dropdown-btn49,
+.dropdown-btn50, .dropdown-btn51, .dropdown-btn52, .dropdown-btn53, .dropdown-btn54, .dropdown-btn55, .dropdown-btn56,
+.dropdown-btn57, .dropdown-btn58, .dropdown-btn59, .dropdown-btn60 {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 98.5%;
+    text-align: left;
+    font-weight: bold;
+    margin-left: 8px;
+}
+
+#saveGrades.nursery1, #saveGrades1.nursery1, #saveGrades2.nursery1, #saveGrades3.nursery1, #saveGrades4.nursery1,
+#saveGrades5.nursery1, #saveGrades6.nursery1 {
+    background-color: #439D77; 
+}
+
+#saveGrades.nursery2, #saveGrades1.nursery2, #saveGrades2.nursery2, #saveGrades3.nursery2, #saveGrades4.nursery2,
+#saveGrades5.nursery2, #saveGrades6.nursery2 {
+    background-color: #5EA8ED; 
+}
+
+#saveGrades.kinder, #saveGrades1.kinder, #saveGrades2.kinder, #saveGrades3.kinder, #saveGrades4.kinder,
+#saveGrades5.kinder, #saveGrades6.kinder {
+    background-color: #E56867; 
+}
+
+#saveGrades.default, #saveGrades1.default, #saveGrades2.default, #saveGrades3.default, #saveGrades4.default,
+#saveGrades5.default, #saveGrades6.default {
+    background-color: white; 
+}
+
+
+
+
+
+
+
+.student-profile {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Space between rows */
+}
+
+.profile-column {
+    width: 50%; /* Each column takes up almost half the width */
+    box-sizing: border-box; /* Include padding and borders in the width */
+}
+
+/* Center all items without centering the text */
+.profile-row {
+    align-items: left; /* Center items vertically */
+}
+
+.profile-label {
+    text-align: left; /* Align label text to the left */
+}
+
+.profile-value {
+    text-align: right; /* Align value text to the right */
+}
+
+.profile-email {
+    margin-bottom: 10px;
+}
+
+.markingCode {
+    font-size: 30px;
+    padding: 10px 155px;
+    color: white;
+    margin-top: 5px;
+}
+
+/* Container for the entire marking code item */
+.marking-code-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    padding-left: 65px;
+    padding-right: 70px;
+    max-width: 500px; /* Adjust width as needed */
+}
+
+/* Left section for the icon and label */
+.marking-code-left {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/* Circle icon with letter */
+.marking-code-icon, .marking-code-icon-p, .marking-code-icon-b, .marking-code-icon-e, .marking-code-icon-n {
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Makes it a circle */
+    margin-right: 10px;
+}
+
+/* Label for the code (e.g., "Advanced") */
+.marking-code-label {
+    color: #333; /* Dark text color */
+    font-size: 16px;
+    font-weight: bold;
+    width: 100px;
+    margin-left: 10px;
+}
+
+/* Right section for the description text */
+.marking-code-right, .marking-code-right-p, .marking-code-right-b, .marking-code-right-e, .marking-code-right-n {
+    background-color: white;
+    border: 2px solid #ffffff; /* Red border to match icon */
+    border-radius: 15px; /* Rounded corners */
+    padding: 8px 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for 3D effect */
+    font-size: 14px;
+    color: #333; /* Dark text color */
+    width: 250px; /* Set a fixed width */
+    text-align: center;
+    left: 15px;
+}
+
+
+
+
+.content {
+    color: #000000;
+    margin-top: 244px;
+}
+
+.notification {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1486EE; /* Notification background */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.notification h5 {
+    font-size: 14px;
+    font-family: "Lato-Bold", Helvetica;
+}
+
+.notification .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: #323232; /* Progress bar color */
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    animation: progress 3s linear forwards; /* Matches the disappearance time */
+}
+
+/* Show the notification */
+.notification.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* Keyframe for progress bar effect */
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+.saveGrades-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adjust this for spacing */
+    width: 100%;
+}
+
+#saveGrades, #saveGrades1, #saveGrades2, #saveGrades3, #saveGrades4, #saveGrades5, #saveGrades6 {
+    background-color: transparent;  /* Transparent background */
+    color: white;  /* White text color */
+    padding: 8px 18px;  /* Padding inside the button */
+    border: none;  /* No border */
+    border-radius: 5px;  /* Rounded corners */
+    cursor: pointer;  /* Pointer cursor on hover */
+    font-size: 14px;  /* Font size */
+    font-weight: bold;  /* Bold text */
+    transition: transform 0.2s ease;  /* Smooth transition effect for hover */
+}
+
+
+#saveGrades:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+#saveGrades1:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+#saveGrades2:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+#saveGrades3:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+#saveGrades4:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+#saveGrades5:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+#saveGrades6:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+}
+
+.navbar {
+    position: fixed;
+}
+
+
+
+/* Add a red border when the input is focused */
+input:focus {
+    outline: none; /* Remove the default outline */
+    background-color: #5a5a5a18;
+}
+
+
+/* For tablets: Max width 1024px */
+@media (max-width: 1024px) {
+    .left-container {
+        display: none; /* Hide left container */
+    }
+
+    .right-container {
+        width: 100%; /* Expand right container to full width */
+    }
+
+    nav ul li a {
+        padding: 20px 10px;
+        font-size: 14px;
+    }
+
+    /* Mininavbar container */
+    .mininavbar {
+        background-color: #ffffff; /* Background color */
+        padding: 10px 0; /* Padding for a balanced look */
+        width: 100%; /* Full width */
+        border-bottom: 1px solid rgba(170, 168, 168, 0.3); /* Subtle border */
+        margin-top: 100px; /* Space below the main navbar */
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent items from wrapping to the next line */
+        position: relative; /* Ensure it doesn’t affect other layout elements */
+    }
+
+    /* List style for mininavbar */
+    .mininavbar ul {
+        display: inline-flex; /* Inline-flex for horizontal scrolling */
+        gap: 70px; /* Spacing between items */
+        padding: 0;
+        margin: 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        list-style: none; /* Remove default list styles */
+    }
+
+    /* Individual list item style */
+    .mininavbar ul li {
+        display: inline-block; /* Ensure items stay inline */
+        margin: 0;
+    }
+}
+
+/* For phones: Max width 480px */
+@media (max-width: 480px) {
+
+    .product-logo {
+        width: 220px;
+        margin-right: 65px;
+    }
+    .left-container {
+        display: none; /* Hide left container */
+    }
+
+    .right-container {
+        width: 100%; /* Expand right container to full width */
+    }
+
+    nav ul li a {
+        padding: 15px 8px;
+        font-size: 12px;
+    }
+
+        /* Dropdown button styling */
+        .dropdown-btn {
+            font-size: 13px;
+        }
+
+        /* Input styling for cells */
+        input[type="text"] {
+            font-size: 11px;
+        }
+
+        .table-row {
+            font-size: 12px;
+        }
+
+        .term {
+            padding: 2px;
+            padding-bottom: 1px;
+            padding-top: 9px;
+            font-size: 13px;
+        }
+
+        /* Domain header layout */
+        .domain-header {
+        padding-bottom: 8px;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
