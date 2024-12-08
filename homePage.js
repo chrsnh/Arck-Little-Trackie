@@ -60,6 +60,14 @@ const classroomFormDB = db.collection("Classrooms");
 const studentFormDB = db.collection("Students");
 
 
+
+
+function isValidEmail(email) {
+    // Basic check for email format (contains '@')
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
+
 // Handle form submission for adding a classroom 
 document.getElementById('classroomAddForm').addEventListener('submit', submitClassroomForm);
 
@@ -281,13 +289,26 @@ function deleteClassroom(id) {
 }
 
 
+// Event listener for adding a student
+document.querySelectorAll(".add-student-btn").forEach(button => {
+    button.addEventListener("click", function(event) {
+        event.stopPropagation(); 
+        document.getElementById("studentForm").classList.add("show");
+        document.getElementById("overlay").classList.add("show");
+    });
+});
+
+// Event listener to close the student form
+document.getElementById("closeStudentForm").addEventListener("click", function() {
+    document.getElementById("studentForm").classList.remove("show");
+    document.getElementById("overlay").classList.remove("show");
+});
 
 // Handle form submission for adding a student
-document.getElementById('studentAddForm').addEventListener('submit', submitStudentForm);
-
-function submitStudentForm(e) {
+document.getElementById('studentAddForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    // Get input values from the form fields
     const sFirstName = document.getElementById('studentFirstName').value;
     const sLastName = document.getElementById('studentLastName').value;
     const sAge = document.getElementById('studentAge').value;
@@ -300,12 +321,40 @@ function submitStudentForm(e) {
     const sPhoneNumber = document.getElementById('studentPhoneNumber').value;
     const sRelationship = document.getElementById('studentRelationship').value;
 
-    if (sFirstName && sLastName && sAge && sDateOfBirth && sIDNumber && sAddress && sGender && sParentOrGuardian && sEmail && sPhoneNumber && sRelationship) {
-        saveStudent (sFirstName, sLastName, sAge, sDateOfBirth, sIDNumber, sAddress, sGender, sParentOrGuardian, sEmail, sPhoneNumber, sRelationship);
-    } else {
-        alert ("Please fiil out all fields!");
+    // Check if the email is valid
+    if (!isValidEmail(sEmail)) {
+        // Show notification
+        const notification = document.getElementById('email-student-notification');
+        notification.classList.add('show');
+
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+        return; // Prevent form submission if email is invalid
     }
-}
+
+    // Check if all other fields are filled out
+    if (sFirstName && sLastName && sAge && sDateOfBirth && sIDNumber && sAddress && sGender && sParentOrGuardian && sEmail && sPhoneNumber && sRelationship) {
+        // Show the confirmation modal before saving
+        const confirmModal = document.getElementById('add-student-confirm');
+        confirmModal.style.display = 'flex';
+
+        // Handle confirmation
+        document.getElementById('confirm-add-student').onclick = () => {
+            confirmModal.style.display = 'none';
+            saveStudent(sFirstName, sLastName, sAge, sDateOfBirth, sIDNumber, sAddress, sGender, sParentOrGuardian, sEmail, sPhoneNumber, sRelationship);
+        };
+
+        // Handle cancellation
+        document.getElementById('cancel-add-student').onclick = () => {
+            confirmModal.style.display = 'none';
+        };
+    } else {
+        alert("Please fill out all fields!");
+    }
+});
+
 
 // Save student data to the Firestore Database
 const saveStudent = (sFirstName, sLastName, sAge, sDateOfBirth, sIDNumber, sAddress, sGender, sParentOrGuardian, sEmail, sPhoneNumber, sRelationship) => {

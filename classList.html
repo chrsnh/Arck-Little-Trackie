@@ -165,7 +165,7 @@
                         <input type="text" id="studentRelationship" required>
                     </div>
                 </div>
-                <button type="submit" class="add-btn">Save</button>
+                <button id="add-btn" type="submit" class="add-btn">Save</button>
             </form>     
         </div>
     </div>
@@ -196,6 +196,21 @@
             document.getElementById("studentForm").style.display = "none";
             document.getElementById("overlay").style.display = "none"; // Hide the overlay
             document.getElementById('studentAddForm').reset();
+        });
+
+        // Event listener for adding a student
+        document.getElementById("add-btn").forEach(button => {
+            button.addEventListener("click", function(event) {
+                event.stopPropagation(); 
+                document.getElementById("studentForm").classList.add("show");
+                document.getElementById("overlay").classList.add("show");
+            });
+        });
+
+        // Event listener to close the student form
+        document.getElementById("closeStudentForm").addEventListener("click", function() {
+            document.getElementById("studentForm").classList.remove("show");
+            document.getElementById("overlay").classList.remove("show");
         });
 
         // Handle form submission (adding a student)
