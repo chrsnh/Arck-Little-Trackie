@@ -35,6 +35,7 @@ nav {
     width: 250px;
     margin-left: 20px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 nav ul {
@@ -170,17 +171,12 @@ h1 {
 
 /* Remove button */
 .remove-btn {
-    background-color: #ff4d4d;
-    color: #fff;
+    color: #000000;
     border: none;
     padding: 5px 10px;
-    border-radius: 4px;
     cursor: pointer;
 }
 
-.remove-btn:hover {
-    background-color: #d33;
-}
 
 .no-student-message {
     display: flex;
@@ -573,7 +569,7 @@ form h2 {
 .notification {
     display: none; /* Hidden by default */
     position: fixed;
-    top: 100px;
+    top: 130px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #1486EE; /* Notification background */
@@ -621,7 +617,7 @@ form h2 {
 }
 
 /* Custom Confirmation Modal */
-.custom-confirm {
+.custom-confirm, .student-confirm {
     display: none; /* Hidden by default */
     position: fixed;
     top: 0;
@@ -668,6 +664,73 @@ form h2 {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.menu {
+    position: relative;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    gap: 6px; /* Increased gap for better visibility */
+    cursor: pointer;
+    z-index: 0;
+}
+
+.dot {
+    width: 5px; /* Increased size */
+    height: 5px;
+    background-color: #000;
+    border-radius: 50%;
+    transition: transform 0.2s, background-color 0.2s; /* Smooth transition */
+}
+
+/* Hover effect for the dots */
+.menu-button:hover .dot {
+    background-color: #1486EE; /* Changes color on hover */
+    transform: scale(1.5); /* Enlarges the dots slightly */
+}
+
+/* Active effect for when the menu is being clicked */
+.menu-button:active .dot {
+    background-color: #0C5EA8; /* Darker shade for active click */
+    transform: scale(1.5); /* Slightly larger when clicked */
+}
+
+.menu-options {
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 0;
+}
+
+.menu-options button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.menu-options button:hover {
+    background-color: #1486EE;
+    color: white;
+}
+
+
+
 
 @media (max-width: 1024px) {
     .product-logo {
@@ -751,8 +814,7 @@ form h2 {
 
     /* Remove button */
     .remove-btn {
-        background-color: #ff4d4d;
-
+        color: #000;
         border: none;
         padding: 4px 5px;
         font-size: 12px;

@@ -157,7 +157,7 @@ function displayClassrooms() {
         console.log('Snapshot:', snapshot);
         if (snapshot.empty) {                   // Check if there are any classrooms
             console.log('No matching document.');
-            container.innerHTML = '<p class="no-student-message">No classrooms found.</p>';
+            container.innerHTML = '<p class="no-student-message">No Classroom, Create now.</p>';
         }
         snapshot.forEach((doc) => {
             const data = doc.data();
@@ -221,7 +221,7 @@ function displayClassrooms() {
 
         // Add event listener to navigate to classlist.html on click of the classroom element
         classroomElement.addEventListener('click', () => {
-            window.location.href = `/CLASSLIST/classList.html?classroomId=${docId}`;
+            window.location.href = `classList.html?classroomId=${docId}`;
         });
 
         container.appendChild(classroomElement);    

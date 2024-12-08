@@ -106,7 +106,7 @@ signIn.addEventListener('click', (event) => {
         showMessage('login is successful!', 'signInMessageSuccess');
         const user=userCredential.user;
         localStorage.setItem('loggedInUserId', user.uid);
-        window.location.href='/HOMEPAGE/homePage.html';
+        window.location.href='homePage.html';
     })
     .catch((error) => {
         const errorCode=error.code;
@@ -131,7 +131,7 @@ googlelogin.addEventListener('click', function() {
         // Check if the email ends with @gbox.adnu.edu.ph
         if (userEmail.endsWith('@gbox.adnu.edu.ph')) {
             console.log('Authorized user:', user);
-            window.location.href = '/HOMEPAGE/homePage.html'; // Allow access to the homepage
+            window.location.href = 'homePage.html'; // Allow access to the homepage
         } else {
             console.error('Unauthorized user:', userEmail);
             alert('Only ADNU Gbox accounts are allowed.');

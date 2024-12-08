@@ -4,6 +4,7 @@
     <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/assets/a.png" type="image/png">
     <title>Little Trackie | Home</title>    <!-- Title of the webpage -->
     <link rel="stylesheet" href="homePage.css">      <!-- Link to the external CSS file for styling -->
 </head>
@@ -17,7 +18,7 @@
             <li>
                 <a class="active" href="#"><img class="home" src="/assets/Profile.png"></a>
                 <ul class="dropdown">
-                    <li><a href="/HOMEPAGE/index.html">Logout</a></li>
+                    <li><a href="index.html">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -28,6 +29,7 @@
         <h5>Classroom added successfully!</h5>
         <div class="progress-bar"></div>
     </div>
+
     <div id="custom-confirm" class="custom-confirm">
         <div class="confirm-content">
             <p>Are you sure you want to delete this classroom?</p>
@@ -35,6 +37,16 @@
             <button id="cancel-delete" class="cancel-button">No</button>
         </div>
     </div>
+
+    <div id="student-confirmation-modal" class="custom-confirm">
+        <div class="confirm-content">
+            <p>Are you sure you want to add this student?</p>
+            <button id="confirm-add-student">Yes</button>
+            <button id="cancel-add-student">No</button>
+        </div>
+    </div>
+    
+    
     <div id="delete-classroom-notification" class="notification">
         <h5>Classroom deleted successfully!</h5>
         <div class="progress-bar"></div>

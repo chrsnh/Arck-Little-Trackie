@@ -33,6 +33,7 @@ nav {
     width: 250px;
     margin-left: 20px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 nav ul {
@@ -58,6 +59,7 @@ nav ul li a {
     text-decoration: none;
     text-align: center;
 }
+
 nav ul li .home {
     height: 35px;
 }
