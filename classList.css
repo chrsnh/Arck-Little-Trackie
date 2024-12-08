@@ -583,7 +583,25 @@ form h2 {
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.notification h5 {
+
+.notification-error {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ED2726; /* Notification background */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.notification h5, .notification-error h5 {
     font-size: 14px;
     font-family: "Lato-Bold", Helvetica;
 }
@@ -599,8 +617,9 @@ form h2 {
     animation: progress 3s linear forwards; /* Matches the disappearance time */
 }
 
+
 /* Show the notification */
-.notification.show {
+.notification.show, .notification-error.show {
     display: block;
     opacity: 1;
     transform: translate(-50%, 0);

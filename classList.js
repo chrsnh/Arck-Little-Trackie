@@ -25,6 +25,12 @@ const db = firebase.firestore();
 const studentFormDB = db.collection("Students");
 const classroomFormDB = db.collection("Classrooms");
 
+function isValidEmail(email) {
+    // Basic check for email format (contains '@')
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
+
 // Global variable for tracking edit mode
 let editingStudentId = null;
 
@@ -246,6 +252,19 @@ function saveUpdatedStudent(studentId) {
     const sPhoneNumber = document.getElementById('studentPhoneNumber').value;
     const sRelationship = document.getElementById('studentRelationship').value;
 
+    // Check if the email is valid
+    if (!isValidEmail(sEmail)) {
+        // Show notification
+        const notification = document.getElementById('email-student-notification');
+        notification.classList.add('show');
+
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+        return; // Prevent form submission if email is invalid
+    }
+
     if (sFirstName && sLastName && sAge && sDateOfBirth && sIDNumber && sAddress && sGender && sParentOrGuardian && sEmail && sPhoneNumber && sRelationship) {
         studentFormDB.doc(studentId).update({
             sFirstName, sLastName, sAge, sDateOfBirth, sIDNumber, sAddress, sGender, sParentOrGuardian, sEmail, sPhoneNumber, sRelationship
@@ -290,6 +309,33 @@ document.getElementById("studentAddForm").onsubmit = function (event) {
 
 
 function addStudent() {
+
+    const sFirstName = document.getElementById('studentFirstName').value;
+    const sLastName = document.getElementById('studentLastName').value;
+    const sAge = document.getElementById('studentAge').value;
+    const sDateOfBirth = document.getElementById('studentDateOfBirth').value;
+    const sIDNumber = document.getElementById('studentIDNumber').value;
+    const sAddress = document.getElementById('studentAddress').value;
+    const sGender = document.querySelector('input[name="gender"]:checked').value;
+    const sParentOrGuardian = document.getElementById('studentParentOrGuardian').value;
+    const sEmail = document.getElementById('studentEmail').value;
+    const sPhoneNumber = document.getElementById('studentPhoneNumber').value;
+    const sRelationship = document.getElementById('studentRelationship').value;
+
+    // Check if the email is valid before proceeding
+    if (!isValidEmail(sEmail)) {
+        // Show notification
+        const notification = document.getElementById('email-student-notification');
+        notification.classList.add('show');
+
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+        return; // Stop further execution if email is invalid
+    }
+
+    // If the email is valid, show the confirmation modal
     const confirmModal = document.getElementById('student-confirm');
     confirmModal.style.display = 'flex';
 
@@ -304,19 +350,6 @@ function addStudent() {
     // Handle 'Yes' click to confirm adding the student
     confirmButton.onclick = () => {
         confirmModal.style.display = 'none'; // Close the modal
-
-        // Get form values and proceed with adding the student
-        const sFirstName = document.getElementById('studentFirstName').value;
-        const sLastName = document.getElementById('studentLastName').value;
-        const sAge = document.getElementById('studentAge').value;
-        const sDateOfBirth = document.getElementById('studentDateOfBirth').value;
-        const sIDNumber = document.getElementById('studentIDNumber').value;
-        const sAddress = document.getElementById('studentAddress').value;
-        const sGender = document.querySelector('input[name="gender"]:checked').value;
-        const sParentOrGuardian = document.getElementById('studentParentOrGuardian').value;
-        const sEmail = document.getElementById('studentEmail').value;
-        const sPhoneNumber = document.getElementById('studentPhoneNumber').value;
-        const sRelationship = document.getElementById('studentRelationship').value;
 
         if (sFirstName && sLastName) {
             const user = firebase.auth().currentUser;
@@ -365,6 +398,7 @@ function addStudent() {
         confirmModal.style.display = 'none'; // Close the modal
     };
 }
+
 
 
 // Clear form after submission
