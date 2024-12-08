@@ -12,6 +12,55 @@ body {
     overflow: hidden;
 }
 
+/* Custom Confirmation Modal */
+.custom-confirm {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.confirm-content {
+    font-family: "Lato-Bold", Helvetica;
+    font-size: 16px;
+    background-color: #fff;
+    padding-top: 20px;
+    padding-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+.confirm-button {
+    font-family: "Lato-Bold", Helvetica;
+    font-size: 16px;
+    background-color: #FA7D7C; /* Red */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    font-family: "Lato-Bold", Helvetica;
+    font-size: 16px;
+    background-color: #5EA8ED; /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 nav {
     background-color: #ffffff; /* Navbar background color */
     height: 100px; /* Fixed height for navbar */

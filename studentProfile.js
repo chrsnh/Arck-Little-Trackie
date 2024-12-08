@@ -2891,14 +2891,25 @@ function clearGradeInputs() {
 
 }
 
+// Display the confirmation modal
+function showGradeConfirmation() {
+    const confirmModal = document.getElementById('grade-confirm-modal');
+    confirmModal.style.display = 'flex'; // Show the modal
+}
+
+// Close the confirmation modal
+function closeGradeConfirmation() {
+    const confirmModal = document.getElementById('grade-confirm-modal');
+    confirmModal.style.display = 'none'; // Hide the modal
+}
+
 // Function to save grades to Firestore
-function saveGrades() {
+function confirmAndSaveGrades() {
     if (!currentStudentId) {
         console.error("No current student ID found.");
         return;
     }
 
-    // Retrieve grade inputs
 
     // Gross Motor Development | Walks with coordinated altering arm movements
     const Walks_with_coordinated_altering_arm_movements_gmd1 = document.getElementById("Walks_with_coordinated_altering_arm_movements_gmd1").value;
@@ -5057,21 +5068,29 @@ function saveGrades() {
             TeachersObservation_Attends_to_task_for_increasingly_longer_periods_of_time_addrowsed4
             
 
-        })
+        }, { merge: true })
         .then(() => {
-            // Show notification
-            const notification = document.getElementById('save-grade-notification');
+            console.log('Grades saved successfully.');
+            closeGradeConfirmation();
+    
+            // Show success notification
+            const notification = document.getElementById('grade-save-notification');
             notification.classList.add('show');
-
-            // Hide notification after 3 seconds
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
         })
         .catch((error) => {
-            console.error("Error saving grades:", error);
+            console.error('Error saving grades:', error);
         });
 }
+
+// Event listeners for confirmation buttons
+document.getElementById('confirm-grade-yes').addEventListener('click', confirmAndSaveGrades);
+document.getElementById('confirm-grade-no').addEventListener('click', closeGradeConfirmation);
+
+// Attach the modal trigger to the Save Grades button
+document.getElementById('saveGrades').addEventListener('click', showGradeConfirmation);
 
 // Function to add focus and blur effects to inputs
 function addInputFocusEffects() {
