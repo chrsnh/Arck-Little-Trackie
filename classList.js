@@ -7,6 +7,14 @@ document.getElementById('studentPhoneNumber').addEventListener('input', function
     this.value = this.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
 });
 
+document.getElementById("closeStudentForm").addEventListener("click", function() {
+    document.getElementById("studentForm").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById('studentAddForm').reset();
+    editingStudentId = null; // Reset editing state
+});
+
+
 
 
 // Firebase configuration
@@ -265,16 +273,13 @@ function saveUpdatedStudent(studentId) {
         return; // Prevent form submission if email is invalid
     }
 
-    if (sFirstName && sLastName && sAge && sDateOfBirth && sIDNumber && sAddress && sGender && sParentOrGuardian && sEmail && sPhoneNumber && sRelationship) {
-        studentFormDB.doc(studentId).update({
-            sFirstName, sLastName, sAge, sDateOfBirth, sIDNumber, sAddress, sGender, sParentOrGuardian, sEmail, sPhoneNumber, sRelationship
+    if (sFirstName && sLastName && sAge && sDateOfBirth && sIDNumber && sAddress && sGender && sParentOrGuardian && sEmail && sPhoneNumber && sRelationship) 
+        {
+            studentFormDB.doc(studentId).update({
+                sFirstName, sLastName, sAge, sDateOfBirth, sIDNumber, sAddress, sGender, sParentOrGuardian, sEmail, sPhoneNumber, sRelationship
         })
         .then(() => {
             console.log('Student updated successfully');
-
-            // Dynamically update the student list after edit
-            const classroomId = new URLSearchParams(window.location.search).get('classroomId');
-            displayStudents(classroomId);
 
             // Show notification
             const notification = document.getElementById('update-student-notification');
@@ -284,6 +289,10 @@ function saveUpdatedStudent(studentId) {
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
+
+            // Dynamically update the student list after edit
+            const classroomId = new URLSearchParams(window.location.search).get('classroomId');
+            displayStudents(classroomId);
 
             clearStudentForm(); // Clear the form
             editingStudentId = null; // Clear editing state
@@ -306,6 +315,14 @@ document.getElementById("studentAddForm").onsubmit = function (event) {
         addStudent();
     }
 };
+
+/*
+document.getElementById("studentAddForm").onsubmit = function (event) {
+    event.preventDefault();
+    saveUpdatedStudent(studentId);
+};
+*/
+
 
 
 function addStudent() {
@@ -406,7 +423,16 @@ function clearStudentForm() {
     document.getElementById('studentAddForm').reset();
     document.getElementById('studentForm').style.display = "none";
     document.getElementById('overlay').style.display = "none";
+    editingStudentId = null; // Reset editing state
+
+    // Reset the form submission handler
+    document.getElementById("studentAddForm").onsubmit = function (event) {
+        event.preventDefault();
+        addStudent();
+    };
 }
+
+
 
 // Classroom details retrieval
 function retrieveClassroomDetails(classroomId) {
