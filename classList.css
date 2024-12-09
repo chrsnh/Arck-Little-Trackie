@@ -691,6 +691,7 @@ form h2 {
 }
 
 .menu-button {
+    padding: 12px 15px;
     background: none;
     border: none;
     display: flex;
